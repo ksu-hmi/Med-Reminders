@@ -26,8 +26,8 @@ their Github repository so that future coders can quickly grasp the idea
 
 evaluating seed code:
 possible changes:
-File Path Handling:
-CSV Reading and Line Counting
-String Capitalization:
-Unused Code and Comments:
-Repeated print Statements:
+File Path Handling:The file path 'Pillbox_production.csv' is hardcoded, which could lead to errors if the file is not in the working directory.
+CSV Reading and Line Counting:The line_count variable is used to differentiate between the header row and data rows, which is a good approach. However, you can use next(csv_reader) instead to skip the header row without needing line_count.
+String Capitalization:Using upper() and capitalize() inconsistently may produce undesired effects in fields like shape and score.
+Unused Code and Comments:There are unused comments (like # '/home/vagrant/src/hb_pillproject/pill_testing_book.csv') that clutter the code.
+Repeated print Statements:print statements are used for debugging. If this script runs in production, these statements should be removed or replaced with proper logging.
