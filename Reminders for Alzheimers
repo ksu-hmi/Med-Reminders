@@ -1,0 +1,38 @@
+import schedule
+import time
+
+# Input section for patient details
+print("Enter Patient Details")
+patient_name = input("Patient Name: ")
+date_of_birth = input("Date of Birth (YYYY-MM-DD): ")
+pharmacy = input("Pharmacy Name: ")
+
+# Display patient information
+print("\nPatient Information")
+print(f"Name: {patient_name}")
+print(f"Date of Birth: {date_of_birth}")
+print(f"Pharmacy: {pharmacy}\n")
+
+# Function to send reminder for Memantine
+def memantine_reminder():
+    print(f"Reminder: {patient_name}, it's time to take Memantine. Please take it after breakfast.")
+
+# Function to send reminder for morning dose of Risperidone
+def risperidone_morning_reminder():
+    print(f"Reminder: {patient_name}, it's time to take your morning dose of Risperidone.")
+
+# Function to send reminder for bedtime dose of Risperidone
+def risperidone_bedtime_reminder():
+    print(f"Reminder: {patient_name}, it's time to take your bedtime dose of Risperidone.")
+
+# Schedule reminders
+# Assuming the times: Morning reminder at 8:00 AM and bedtime reminder at 8:00 PM
+schedule.every().day.at("08:00").do(memantine_reminder)
+schedule.every().day.at("08:00").do(risperidone_morning_reminder)
+schedule.every().day.at("20:00").do(risperidone_bedtime_reminder)
+
+# Run the scheduler
+print("Medication reminders are scheduled.")
+while True:
+    schedule.run_pending()
+    time.sleep(60)  # Check every minute
