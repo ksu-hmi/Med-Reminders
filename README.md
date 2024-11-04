@@ -1,20 +1,74 @@
-# Med-Reminders
-Those contributing and maintaining this project include our team (Macy Roy, Kiera Hughes, Katherine Wolz, and Michaelia Jonas).
+ # Medicine Reminder Application
+Simple medicine reminder app using python
 
-We are proposihng an application that supplies medication reminders with a connection to EHR systems. Therefore providers and those given permission to view medical information can see the patients medication intake. Notifications would be given to the guardians, family, and providers if the patient is overtaking or undertaking the medication to ensure adequate treatment and action can be taken in those cases.The pharmacy would scan a QR code on the prescription before giving it to the patient for it to be input into the app to begin giving reminders. 
-This information would include dosage, frequency, weight, etc.
-Ideally, the prescription bottle would have smart technology to lock in between dosage times to ensure the patient is not overtaking the medication. 
-This smart bottle would also weigh the contents of the medication to be able to track the number of pills in the container.
+To build an APK for Android from your Kivy application, we will use Buildozer, a tool that automates the process of packaging Kivy applications for Android. Below is a step-by-step guide to help you through this process.
 
-This app would be useful for those with Dementia, Alzheimers, Nuerological problems that want to maintain control over their medicial conditions.
-Nursing Homes, Senior Living, and Assisted Living centers could use this to  better track patient intake of medications and make sure patients are not overtaking or undertaking their medications. There are many cases of drug interactions in these facilities that could be solved by knowing medication intake for patients. It would require the input of a medication name, dosage amount, weight of each pill, the frequency of medication, provider name, and EHR system name.
-There will be define functions, if/else/elif statements, inputs, while/break loops, etc in the code which will aid in inputting user information and making sure that the information is accepted. We could use help with coding the QR Code connection to bring up the prescription on the app.
+## Features
 
-The medication reminder app, with its EHR integration and smart bottle technology, offers significant benefits for patient safety and medication adherence. By syncing with EHR systems, it allows caregivers, family members, and healthcare providers real-time access to medication data, enabling swift interventions if a patient is missing doses or overtaking medication. The pharmacy’s QR code scan for each prescription ensures accurate data entry, while the smart bottle’s locking mechanism and weight tracking further prevent dosing errors. These features are especially valuable in settings like nursing homes, where monitoring patient intake closely can reduce risks of drug interactions and improper dosing. The app’s consistent reminders and adherence tracking help patients, particularly the elderly, maintain independence in managing their health.
+- Set reminders with medication name and interval (in hours).
+- View a list of all active reminders.
+- Edit or delete existing reminders.
+- Receive notifications with medication details.
 
-Some challenges accompany these innovations. Data privacy and security are critical, as the app shares sensitive health information across multiple users. The smart bottle’s technology requires precise calibration, robust battery life, and reliability over time to function effectively. Additionally, user compliance and training could be barriers, especially for older users who may need assistance with the technology. Ensuring pharmacies consistently scan QR codes accurately is another potential issue in high-volume settings. Finally, the costs associated with advanced features like EHR integration and smart bottles may limit access for some users, potentially restricting benefits to those most in need.
+## Installation
 
-Data analytics using Python, Jupyter Notebook: Python will power the app’s core features, such as QR code scanning, medication scheduling, and notifications through functions, `if/else` logic, and loops to manage reminders and alerts. Jupyter Notebook will be used for analyzing adherence trends, visualizing data with libraries like Pandas and Matplotlib, and generating insights on patient behavior to support both the app team and healthcare providers.
-Benefits of a medicine reminder app: A medicine reminder app offers numerous benefits that enhance medication adherence and support overall health management. By providing regular reminders, the app helps users take medications on time and as prescribed, leading to better treatment outcomes, especially for those managing chronic conditions. These reminders significantly reduce missed doses, minimizing the risk of complications and hospitalizations due to non-adherence. In addition to adherence, these apps also track medication intake over time, allowing users and caregivers to monitor patterns and make informed health decisions. For individuals reliant on medications, such as the elderly, the app fosters independence by providing consistent, automated reminders that reduce reliance on others. 
+### Prerequisites
 
-Moreover, for caregivers who manage the medication schedules of others, such as elderly parents or children, these apps streamline the process and ensure consistency. Some apps even offer interaction alerts to help users avoid adverse reactions when new medications are added, making them especially helpful for complex medication regimens. With flexibility in handling changes in time zones or daily routines, these apps ensure users can stick to their schedules, no matter where they are. They also enhance communication with healthcare providers, as users can share an accurate medication history, enabling better-informed adjustments in treatment. Altogether, medicine reminder apps provide a convenient, digital solution to support adherence, improve health outcomes, and simplify life for both users and caregivers.
+- Python 3.6+
+- Git
+- Buildozer (Python tool to package the application)
+- Java JDK (for compiling the application)
+- Android SDK (Android development tools)
+
+### Step 1: Set Up Your Environment
+
+#### On Ubuntu (or other Debian-based distributions):
+
+```sh
+sudo apt update
+sudo apt install -y python3-pip python3-dev build-essential git \
+    python3-venv libffi-dev libssl-dev liblzma-dev zlib1g-dev \
+    libgdbm-dev libsqlite3-dev libreadline-dev libncurses5-dev libbz2-dev \
+    openjdk-11-jdk
+```
+
+### On MacOS
+
+```sh
+brew install caskroom/cask/brew-cask
+brew install automake autoconf libtool pkg-config
+brew install gnu-sed wget
+brew install openssl
+```
+
+### Step 4: Initialize the Buildozer Project
+Navigate to your project directory and initialize Buildozer:
+
+```sh
+cd your_project_directory
+buildozer init
+```
+
+This command will create a buildozer.spec file in your project directory. This file contains all the configurations required to build the APK.
+
+### Step 5: Configure Buildozer
+Open the buildozer.spec file in a text editor and modify it as needed. Here are some important fields you should configure:
+
+```ini
+title = Medicine Reminder
+package.name = medicinereminder
+package.domain = org.example
+source.include_exts = py,kv
+source.include_patterns = assets/*, images/*, *.png
+requirements = python3,kivy,kivymd,plyer,schedule,sqlite3
+android.permissions = INTERNET, VIBRATE
+```
+
+
+### Step 6: Build the APK
+Once your buildozer.spec file is configured, you can build the APK. In your project directory, run:
+
+```sh
+buildozer -v android debug
+```
+This command will download the necessary tools, compile your application, and package it into an APK file. The -v flag provides verbose output.
