@@ -1,12 +1,12 @@
 Sprint 1:
-[x] create ReadMe file (Macy)
-[x] create Project Roadmap file and assign tasks to all (Macy)
-[x] find related repository and evaluate it (All of us)
-[x] test medicine-test and mypillhelper repositories and get them running, reporting on any issues and documenting how 
+[Done] create ReadMe file (Macy)
+[Done] create Project Roadmap file and assign tasks to all (Macy)
+[Done] find related repository and evaluate it (All of us)
+[Done] test medicine-test and mypillhelper repositories and get them running, reporting on any issues and documenting how 
 to make them work (Macy and Kate)
 Sprint 2:
-[x] create/edit code to inputting patient information and prescription information (Kiera)
-[x] create/edit code for QR Code based on input info (Macy)
+[Done] create/edit code to inputting patient information and prescription information (Kiera)
+[Done] create/edit code for QR Code based on input info (Macy)
 [x] create/edit code for creating notification (Kate)
 [x] create/edit code for connecting to EHR system (Michaelia)
 Sprint 3: 
