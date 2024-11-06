@@ -7,6 +7,7 @@ patient_name = input("Patient Name: ")
 date_of_birth = input("Date of Birth (YYYY-MM-DD): ")
 pharmacy = input("Pharmacy Name: ")
 
+
 # Display patient information
 print("\nPatient Information")
 print(f"Name: {patient_name}")
