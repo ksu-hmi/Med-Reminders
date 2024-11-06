@@ -1,7 +1,7 @@
 # Med-Reminders
 Those contributing and maintaining this project include our team (Macy Roy, Kiera Hughes, Katherine Wolz, and Michaelia Jonas).
 
-We are proposihng an application that supplies medication reminders with a connection to EHR systems. Therefore providers and those given permission to view medical information can see the patients medication intake. Notifications would be given to the guardians, family, and providers if the patient is overtaking or undertaking the medication to ensure adequate treatment and action can be taken in those cases.The pharmacy would scan a QR code on the prescription before giving it to the patient for it to be input into the app to begin giving reminders. 
+We are proposing an application that supplies medication reminders with a connection to EHR systems. Therefore, providers and those given permission to view medical information can see the patients medication intake. Notifications would be given to the patient, family or guardians, and providers if the patient is overtaking or undertaking the medication to ensure adequate treatment and action can be taken in those cases.The pharmacy would scan a QR code on the prescription before giving it to the patient for it to be input into the app to begin giving reminders. 
 This information would include dosage, frequency, weight, etc.
 Ideally, the prescription bottle would have smart technology to lock in between dosage times to ensure the patient is not overtaking the medication. 
 This smart bottle would also weigh the contents of the medication to be able to track the number of pills in the container.
