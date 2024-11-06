@@ -23,3 +23,5 @@ img.save("qrcode.png")
 
 # Show the image (if in a Jupyter notebook or similar environment)
 img.show()
+
+#need to add extension 
