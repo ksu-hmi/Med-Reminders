@@ -1,0 +1,14 @@
+prescription_id=input("Prescription ID: ")
+prescription_name=input("Prescription Name: ")
+prescription_dosage=input('Prescription Dosage: ')
+prescription_frequency=input('Prescription Frequency: ')
+prescription_time=input('Prescription Time(HH:MM): ')
+
+#example prescription information to create QR Code
+
+prescription_id= ('123456')
+prescription_name= ('Risperidone')
+prescription_dosage= ('50mg')
+prescription_frequency= ('2 times a day')
+prescription_time= ('08:00','and','18:00')
+
