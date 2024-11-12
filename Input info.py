@@ -41,7 +41,7 @@ def input_family_info():
         print(f"Family Information: {family}, Email: {family_email}, Phone: {family_num}")
     else:
         print("No family information collected.")
-
+#Added main function to integrate patient and family data entry
 def main():
     print("Enter Patient and Prescription Information")
     input_patient_data()
