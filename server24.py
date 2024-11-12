@@ -325,7 +325,7 @@ if not user:
     return redirect('/login')  # Redirect to login if user not found
 
 # Get medications for the user
-medications = user.u_meds
+user_medications_list = user.u_meds
 med_dictionary = db_helper.make_dictionary_for_user_meds(medications)
 
 # Retrieve and validate request data
