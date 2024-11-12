@@ -45,20 +45,21 @@ def display_medication_search_bar():
 def display_medication_search_results():
     """Display the options for medication search results."""
 
-    form_imprint = (request.args.get('pill_imprint')).upper()
-    score = request.args.get('pill_score')
-    shape = (request.args.get('pill_shape')).upper() #in DB as all caps.
-    color = (request.args.get('pill_color')).upper() #in DB as all caps.
-    name = (request.args.get('name_of_med')).capitalize()  
+    form_imprint = (request.args.get('pill_imprint') or '').upper()  # Default empty string if None
+score = request.args.get('pill_score')  # Assuming score is optional, no need to do anything if None
+shape = (request.args.get('pill_shape') or '').upper()  # Default empty string if None
+color = (request.args.get('pill_color') or '').upper()  # Default empty string if None
+name = (request.args.get('name_of_med') or '').capitalize()  # Default empty string if None
 
-    query_results = db_helper.query_with_find_meds_values(form_imprint, score, shape, color, name)
-    med_dictionary = db_helper.make_dictionary_from_query(query_results)
+# Assuming db_helper.query_with_find_meds_values can handle optional parameters like score being None
+query_results = db_helper.query_with_find_meds_values(form_imprint, score, shape, color, name)
+med_dictionary = db_helper.make_dictionary_from_query(query_results)
 
-    if len(med_dictionary) == 0:  #check if med_dictionary is empty. 
-        return render_template("no_search.html")
-    else:
-        return render_template("results.html", 
-                            med_options=med_dictionary) 
+# Simplified check for empty dictionary
+if not med_dictionary:
+    return render_template("no_search.html")
+else:
+    return render_template("results.html", med_options 
                          
 @app.route("/more_info/<value>")
 def display_more_info(value):
