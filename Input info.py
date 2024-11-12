@@ -32,7 +32,7 @@ def input_patient_data():
     Patient Email: {email}
     """
     print(Label)
-
+# Added function input_family_info for family information input with consent check
 def input_family_info():
     consent = input("Does the patient consent to providing family information? (yes/no): ").strip().lower()
     if consent == 'yes':
