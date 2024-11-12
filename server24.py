@@ -123,15 +123,14 @@ def login_user():
     user = Users.query.filter((Users.f_name == f_name),
                               (Users.cell_number == cell_number)).first()
 
-    #if we have a search query and the password is correct- add to session. 
     if user and user.check_password(password_hash):
-        session['user_name'] = user.f_name
-        session['user_id'] = user.user_id
-        # flash("Successfully logged in!")
-        return redirect('/user-page')  #redirect to users page.
-    else: 
-        flash("That is not a valid email & password.")
-        return redirect('/login')   
+    session['user_name'] = user.f_name
+    session['user_id'] = user.user_id
+    session.permanent = True  # Ensure the session lasts for the configured lifetime
+    return redirect('/user-page')  # Redirect to user's page
+else: 
+    flash("Invalid username or password.")  # More generic flash message
+    return redirect('/login')  # Redirect back to the login page  
 
 @app.route('/logout')
 def logout_user():
