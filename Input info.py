@@ -15,6 +15,7 @@ def input_patient_data():
     medication1_time = input('What time does the patient take medication 1: ')
     medication2_time = input('What time does the patient take medication 2: ')
 
+#Formatted the Label output in input_patient_data, enhanced the data output for clarity
     Label = f"""
     Patient Information:
     --------------------
