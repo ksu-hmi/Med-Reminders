@@ -309,19 +309,46 @@ def display_schedule_medication_form():
 def schedule_medication():
     """Update u_med in DB and schedule text notifications for medication."""
 
-    user = Users.query.filter(Users.user_id == session['user_id']).first()
-    medications = user.u_meds #get medications for user in session. 
-    med_dictionary = db_helper.make_dictionary_for_user_meds(medications)
-    req = request.get_json()
-    #pull info from session
-    am = req['am_time']
-    mid = req['mid_time']
-    pm = req['pm_time']
-    rx_duration = req['duration']
-    qty = req['qty']
-    refills = req['refills']
-    med_strength = req['med_strength']
-    med_id = req['med_id']
+    from flask import request, session, flash, redirect
+
+# Check if user_id exists in session and query the user
+user_id = session.get('user_id')
+if not user_id:
+    flash("No user is logged in.", "error")
+    return redirect('/login')  # Redirect to login if no user_id in session
+
+user = Users.query.filter(Users.user_id == user_id).first()
+
+# Ensure user exists before proceeding
+if not user:
+    flash("User not found.", "error")
+    return redirect('/login')  # Redirect to login if user not found
+
+# Get medications for the user
+medications = user.u_meds
+med_dictionary = db_helper.make_dictionary_for_user_meds(medications)
+
+# Retrieve and validate request data
+req = request.get_json()
+
+# Check if the necessary fields exist in the request
+required_fields = ['am_time', 'mid_time', 'pm_time', 'duration', 'qty', 'refills', 'med_strength', 'med_id']
+for field in required_fields:
+    if field not in req:
+        flash(f"Missing required field: {field}", "error")
+        return redirect('/some-error-page')  # Or handle it gracefully with a custom message
+
+# Pull info from request JSON
+am = req['am_time']
+mid = req['mid_time']
+pm = req['pm_time']
+rx_duration = req['duration']
+qty = req['qty']
+refills = req['refills']
+med_strength = req['med_strength']
+med_id = req['med_id']
+
+# Further processing with the retrieved data (e.g., saving to the database, etc.)
     
     if am != "":
         am_time = datetime.strptime(am,'%H:%M')
