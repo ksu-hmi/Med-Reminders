@@ -17,7 +17,9 @@ import requests
 import schedule
 import time
 
-
+if __name__ == "__main__":
+    connect_to_db(app)  # This will connect the app to the database
+    app.run(debug=True)
 app = Flask(__name__)
 app.permanent_session_lifetime = timedelta(days=1)
 # Required to use Flask sessions and the debug toolbar
