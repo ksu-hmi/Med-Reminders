@@ -1,31 +1,54 @@
+#new code with code changes 
+def input_patient_data():
+    doctor = input('Doctor Name: ')
+    patient = input('Patient Name: ')
+    dob = input('Patient DOB: ')
+    pharmacy = input('Patient Pharmacy Address: ')
+    pharmacy_num = input('Pharmacy Phone Number: ')
+    pharmacy_name = input('Pharmacy Name: ')
+    email = input('Patient Email: ')
+    EHR = input('Facility EHR system: ')
+    medication1 = input('Patient medication 1: ')
+    medication2 = input('Patient medication 2: ')
+    medication1_dosage = input('Medication 1 Dosage: ')
+    medication2_dosage = input('Medication 2 Dosage: ')
+    medication1_time = input('What time does the patient take medication 1: ')
+    medication2_time = input('What time does the patient take medication 2: ')
 
-#for the doctor to input the information 
+    Label = f"""
+    Patient Information:
+    --------------------
+    Patient Name: {patient}
+    DOB: {dob}
+    Doctor: {doctor}
+    Pharmacy: {pharmacy_name} | Address: {pharmacy} | Phone: {pharmacy_num}
+    Facility EHR System: {EHR}
 
-Label=''
-doctor=('Doctor name:')
-patient=input('Patient Name: ')
-dob=input('Patient DOB: ')
-pharmacy =input ('Patient Pharmacy Address: ')
-pharmacy_num=input('Pharmacy Phone Number: ')
-pharmacy_name=input('Pharmacy Name: ')
-email=input('Patient Email: ')
-EHR=input('Facility EHR system: ')
-medication1=input('Patient medication 1: ')
-medication2=input('Patient medication 2: ')
-medication1_dosage=input ('Medication 1 Dosage: ')
-medication2_dosage= input('Medication 2 Dosage: ')
-medication1_time=input('What time does the patient take medication 1: ')
-medication1_time=input('What time does the patient take medication 2: ')
-Label=print(patient,dob,medication1,medication1_dosage,medication1_time,doctor, pharmacy_name)
+    Medications:
+    - {medication1}: {medication1_dosage}, Time: {medication1_time}
+    - {medication2}: {medication2_dosage}, Time: {medication2_time}
 
-#patient must input this information with their consent
+    Patient Email: {email}
+    """
+    print(Label)
 
-family=input ('Family to include: ')
-family_email=input ('Family email: ')
-family_num=input('Family phone number: ')
+def input_family_info():
+    consent = input("Does the patient consent to providing family information? (yes/no): ").strip().lower()
+    if consent == 'yes':
+        family = input('Family to include: ')
+        family_email = input('Family email: ')
+        family_num = input('Family phone number: ')
+        print(f"Family Information: {family}, Email: {family_email}, Phone: {family_num}")
+    else:
+        print("No family information collected.")
 
+def main():
+    print("Enter Patient and Prescription Information")
+    input_patient_data()
+    print("\nEnter Family Information")
+    input_family_info()
 
-
-Label()
+if __name__ == "__main__":
+    main()
 
 
