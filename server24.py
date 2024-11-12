@@ -317,7 +317,7 @@ if not user_id:
     flash("No user is logged in.", "error")
     return redirect('/login')  # Redirect to login if no user_id in session
 
-user = Users.query.filter(Users.user_id == user_id).first()
+user = Users.query.filter_by(user_id=user_id).first()
 
 # Ensure user exists before proceeding
 if not user:
