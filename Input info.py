@@ -13,6 +13,7 @@ def input_patient_data():
     medication1_dosage = input('Medication 1 Dosage: ')
     medication2_dosage = input('Medication 2 Dosage: ')
     medication1_time = input('What time does the patient take medication 1: ')
+   #Fixed variable name conflict in medication2_time and updated placeholder for Label 
     medication2_time = input('What time does the patient take medication 2: ')
 
 #Formatted the Label output in input_patient_data, enhanced the data output for clarity
