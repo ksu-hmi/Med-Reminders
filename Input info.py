@@ -47,7 +47,7 @@ def main():
     input_patient_data()
     print("\nEnter Family Information")
     input_family_info()
-
+#Added a proper call to main() at the end to run the code.
 if __name__ == "__main__":
     main()
 
