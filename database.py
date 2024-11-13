@@ -28,10 +28,10 @@ class ReminderDatabase:
         )
         '''
         try:
-            with self.conn:
-                self.conn.execute(query)
+            with self.create_connection() as conn:
+                conn.execute(query)
         except sqlite3.Error as e:
-            print(f"Error creating table: {e}")
+            logging.error(f"Error creating table: {e}")
             raise
 
     def add_reminder(self, med_name: str, interval: int) -> None:
@@ -42,15 +42,19 @@ class ReminderDatabase:
             med_name (str): Name of the medication.
             interval (int): Reminder interval in minutes.
         """
+        if not med_name or not isinstance(interval, int) or interval <= 0:
+            logging.error("Invalid input: med_name must be non-empty, interval must be a positive integer.")
+            raise ValueError("Invalid input for med_name or interval.")
+            
         query = '''
         INSERT INTO reminders (med_name, interval)
         VALUES (?, ?)
         '''
         try:
-            with self.conn:
-                self.conn.execute(query, (med_name, interval))
+            with self.create_connection() as conn:
+                conn.execute(query, (med_name, interval))
         except sqlite3.Error as e:
-            print(f"Error adding reminder: {e}")
+            logging.error(f"Error adding reminder: {e}")
             raise
 
     def get_reminders(self) -> List[Tuple[int, str, int]]:
