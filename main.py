@@ -104,12 +104,15 @@ class ReminderApp(MDApp):
         med_name = self.root.get_screen('reminder').ids.med_name.text
         interval = self.root.get_screen('reminder').ids.interval.text
         
-        if med_name and interval.isdigit():
-            interval = int(interval)
-            self.db.add_reminder(med_name, interval)
-            schedule.every(interval).hours.do(self.remind_user, med_name=med_name)
-            self.show_dialog("Reminder set for {} every {} hours.".format(med_name, interval))
-            self.root.current = 'menu'
+         if med_name:
+            try:
+                interval = int(interval)
+                self.db.add_reminder(med_name, interval)
+                schedule.every(interval).hours.do(self.remind_user, med_name=med_name)
+                self.show_dialog("Reminder set for {} every {} hours.".format(med_name, interval))
+                self.root.current = 'menu'
+            except ValueError:
+                self.show_dialog("Please enter a valid integer for the interval.")
         else:
             self.show_dialog("Please enter valid details.")
 
