@@ -223,8 +223,7 @@ class ReminderApp(MDApp):
     def delete_reminder(self, reminder_id, dialog):
         self.db.delete_reminder(reminder_id)
         self.show_dialog("Reminder deleted.")
-        self.load_reminders()
-        self.root.current = 'list_reminders'
+        self.load_reminder_screen()
         self.close_dialog(dialog)
 
 if __name__ == "__main__":
