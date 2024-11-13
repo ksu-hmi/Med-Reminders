@@ -1,4 +1,5 @@
 import sqlite3
+import logging
 from typing import List, Tuple
 
 
@@ -10,18 +11,12 @@ class ReminderDatabase:
         Args:
             db_name (str): Name of the SQLite database file.
         """
-        self.db_name = db_name
-        self.conn = None
-        self.create_connection()
+       self.db_name = db_name
         self.create_table()
 
-    def create_connection(self) -> None:
-        """Create a database connection to the SQLite database."""
-        try:
-            self.conn = sqlite3.connect(self.db_name)
-        except sqlite3.Error as e:
-            print(f"Error connecting to database: {e}")
-            raise
+    def create_connection(self):
+        """Create a context-managed database connection."""
+        return sqlite3.connect(self.db_name)
 
     def create_table(self) -> None:
         """Create the reminders table if it doesn't exist."""
