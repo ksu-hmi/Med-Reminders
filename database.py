@@ -66,11 +66,11 @@ class ReminderDatabase:
         """
         query = 'SELECT * FROM reminders'
         try:
-            with self.conn:
-                cursor = self.conn.execute(query)
+            with self.create_connection() as conn:
+                cursor = conn.execute(query)
                 return cursor.fetchall()
         except sqlite3.Error as e:
-            print(f"Error retrieving reminders: {e}")
+            logging.error(f"Error retrieving reminders: {e}")
             return []
 
     def delete_reminder(self, reminder_id: int) -> None:
@@ -82,10 +82,10 @@ class ReminderDatabase:
         """
         query = 'DELETE FROM reminders WHERE id = ?'
         try:
-            with self.conn:
-                self.conn.execute(query, (reminder_id,))
+            with self.create_connection() as conn:
+                conn.execute(query, (reminder_id,))
         except sqlite3.Error as e:
-            print(f"Error deleting reminder: {e}")
+            logging.error(f"Error deleting reminder: {e}")
             raise
 
     def update_reminder(self, reminder_id: int, med_name: str, interval: int) -> None:
@@ -97,19 +97,18 @@ class ReminderDatabase:
             med_name (str): New name of the medication.
             interval (int): New reminder interval in minutes.
         """
+         if not med_name or not isinstance(interval, int) or interval <= 0:
+            logging.error("Invalid input: med_name must be non-empty, interval must be a positive integer.")
+            raise ValueError("Invalid input for med_name or interval.")
         query = '''
         UPDATE reminders
         SET med_name = ?, interval = ?
         WHERE id = ?
         '''
         try:
-            with self.conn:
-                self.conn.execute(query, (med_name, interval, reminder_id))
+            with self.create_connection() as conn:
+                conn.execute(query, (med_name, interval, reminder_id))
         except sqlite3.Error as e:
-            print(f"Error updating reminder: {e}")
+            logging.error(f"Error updating reminder: {e}")
             raise
-
-    def __del__(self):
-        """Close the database connection when the object is destroyed."""
-        if self.conn:
-            self.conn.close()
+            
