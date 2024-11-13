@@ -208,12 +208,14 @@ class ReminderApp(MDApp):
         med_name = dialog.content_cls.ids.edit_med_name.text
         interval = dialog.content_cls.ids.edit_interval.text
         
-        if med_name and interval.isdigit():
-            interval = int(interval)
-            self.db.update_reminder(reminder_id, med_name, interval)
-            self.show_dialog("Reminder updated for {} every {} hours.".format(med_name, interval))
-            self.load_reminders()
-            self.root.current = 'list_reminders'
+        if med_name:
+            try:
+                interval = int(interval)
+                self.db.update_reminder(reminder_id, med_name, interval)
+                self.show_dialog("Reminder updated for {} every {} hours.".format(med_name, interval))
+                self.load_reminder_screen()
+            except ValueError:
+                self.show_dialog("Please enter a valid integer for the interval.")
         else:
             self.show_dialog("Please enter valid details.")
         self.close_dialog(dialog)
